@@ -10,7 +10,7 @@ import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from 'postprocessing'
 import { OverrideMaterialManager } from 'postprocessing'
 // import Music from '../../Music';
-import { useMusic } from '../../UIStore'
+import { useMusic, usePDF } from '../../UIStore'
 
 function convertMaterialsToBasic(materials, alphaTestValue = 0) {
   const newMaterials = {};
@@ -50,6 +50,7 @@ export default function Model(props) {
   const newMaterials = convertMaterialsToBasic(materials)
 
   const { playMusic, pauseMusic} = useMusic();
+  const { openPDF } = usePDF();
   const onMusic = (n) => {
     if (n=="play") {
       playMusic()
@@ -70,14 +71,12 @@ export default function Model(props) {
     }
   };
   
-  console.log(nodes)
-  console.log(songtitle)
   return (
     <>
     <group {...props} dispose={null}>
     <EffectComposer autoClear={false}>
         <Outline selection={hoveredItem} blur={false} edgeStrength={5} visibleEdgeColor={0xf99b2f} />
-        <Noise opacity={0.4} blendFunction={BlendFunction.OVERLAY} />
+        <Noise opacity={0.32} blendFunction={BlendFunction.OVERLAY} />
     </EffectComposer>
 
       <mesh name="Journal" 
@@ -155,6 +154,7 @@ export default function Model(props) {
       <mesh name="Actual_Journal" ref={actualjournal} 
         onPointerEnter={() => onHover(1, actualjournal)} 
         onPointerLeave={() => onHover(0, actualjournal)} 
+        onClick={() => openPDF()}
         geometry={nodes.Actual_Journal.geometry} 
         material={newMaterials.Journal} 
         position={[-0.004, 1.5, 0]} scale={1.5} />

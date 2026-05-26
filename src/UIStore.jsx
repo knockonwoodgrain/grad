@@ -8,4 +8,11 @@ export const useMusic = create((set) => ({
   setSong: (title) => set({songTitle: title})
 }))
 
+export const usePDF = create((set) => ({
+  isPDFOpen: false,
+  openPDF: () => set({isPDFOpen: true}),
+  closePDF: () => set({isPDFOpen: false}),
+}))
+
+
 

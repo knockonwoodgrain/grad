@@ -5,3 +5,36 @@ body, html, #root {
   margin: 0;
   padding: 0;
 }
+
+.UI {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  /* transition-duration: 2s; */
+}
+.PDF {
+  display: flex;
+  height: 85vh;
+  aspect-ratio: 1.414/1;
+  background: #0e0e0e;
+  border: gainsboro solid 1px;
+  transition-duration: 0.5s;
+  opacity: 0%;
+}
+.closeButton {
+  display: flex;
+  background: white;
+  height: 2vw;
+  aspect-ratio: 1/1;
+
+}
+
+canvas {
+  z-index: -5;
+}
