@@ -15,9 +15,26 @@ body, html, #root {
   z-index: 100;
   width: 100vw;
   height: 100vh;
+  background-color: rgb(0,0,0);
   visibility: hidden;
-  /* transition-duration: 2s; */
+  transition-duration: 0.5s;
 }
+.sidePanel {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 10vh;
+  background: #0e0e0e;
+  box-sizing: border-box;
+  border-color: gainsboro;
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: 1px;
+
+}
+/* .mainCanvas { */
+/*   height: 80vh; */
+/* } */
 .PDF {
   display: flex;
   height: 85vh;

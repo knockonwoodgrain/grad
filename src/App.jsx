@@ -18,6 +18,9 @@ function App() {
   },[isPDFOpen])
   return (
     <>
+    <div className='sidePanel'>
+      
+    </div>
     <div ref={mainUI} style={style} className='UI'>
     <Journal />
     </div>
