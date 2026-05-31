@@ -51,7 +51,7 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/MyRoom3.glb')
   const newMaterials = convertMaterialsToBasic(materials)
 
-  const video = useVideoTexture('Mumbai.mp4', {muted: true, loop: true, playsInline: true})
+  const video = useVideoTexture('websiteThumbnail08_AV1.mp4', {muted: true, loop: true, playsInline: true})
   const videoDimensions = [1920, 1284]
   video.flipY = false;
   console.log(monitorscreen)

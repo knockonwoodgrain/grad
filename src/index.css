@@ -128,7 +128,7 @@ body, #root {
 }
 .chapterBox {
   display: flex;
-  flex-grow: 2;
+  flex-grow: 1.5;
 }
 .break {
   flex-basis: 100%;
@@ -147,12 +147,12 @@ body, #root {
   padding: 0.5vw;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: 1vw;
+  gap: 1.5vw;
 }
 .websiteTitle, .chapterTitle {
   font-family: Instrument Serif;
   justify-self: left;
-  font-size: 7vh;
+  font-size: clamp(2vh,7vh, 4vw);
   line-height: 1;
   animation: swapText 0.2s ease-in-out forwards; 
 }
@@ -168,7 +168,7 @@ body, #root {
 }
 .chapterTitle {
   color: oklch(0.7 0 0);
-  font-size: 4.5vh;
+  font-size: clamp(1vh, 4.5vh, 2.5vw);
 }
 /* .mainCanvas { */
 /*   height: 80vh; */
