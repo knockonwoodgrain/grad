@@ -1,6 +1,75 @@
-body, html, #root {
+@font-face {
+  font-family: Apple Garamond;
+  src: url("./Fonts/AppleGaramond.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Instrument Sans;
+  src: url("./Fonts/InstrumentSans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Instrument Serif;
+  src: url("./Fonts/InstrumentSerif-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Increase line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  all: unset;
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+body, #root {
   width: 100%;
   height: 100%;
+  max-height: 100svh;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,46 +81,172 @@ body, html, #root {
   align-items: center;
   justify-content: center;
   align-content: center;
-  z-index: 100;
+  z-index: 95;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
+  transition-duration: 0.7s;
   visibility: hidden;
-  transition-duration: 0.5s;
+  backdrop-filter: blur(20px);
 }
 .sidePanel {
   display: flex;
   position: absolute;
   width: 100vw;
-  height: 10vh;
-  background: #0e0e0e;
+  min-height: 10svh;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+  background: oklch(0.1638 0 0);
   box-sizing: border-box;
-  border-color: gainsboro;
-  border-style: solid;
-  border-width: 0;
-  border-bottom-width: 1px;
+  z-index: 80;
 
+}
+.chapter, .chapterSelected, .sidePanelContent {
+  color: white;
+  display: flex;
+  font-family: Apple Garamond;
+  align-items: center;
+  margin: 0.5vw;
+  margin-right: 0.25vw;
+  margin-left: 0.25vw;
+  background-color: oklch(0.2306 0 277);
+  border-radius: 6px;
+  justify-content: center;
+  font-size: 2vw;
+  flex-grow: 1;
+  transition-duration: 0.4s;
+  max-height: 100%;
+}
+
+.chapterSelected {
+  color: black;
+  background-color: oklch(0.9306 0 277);
+  transition-duration: 0.7s;
+  transform: scale(1.04);
+  flex-grow: 2;
+
+}
+.chapterBox {
+  display: flex;
+  flex-grow: 2;
+}
+.break {
+  flex-basis: 100%;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+.chapter:hover {
+  background-color: oklch(0.3306 0 277);
+  transform: scale(1.01);
+}
+.sidePanelContent {
+  background-color: rgba(0,0,0,0);
+  width: 30vw;
+  margin: 0;
+  padding: 0.5vw;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 1vw;
+}
+.websiteTitle, .chapterTitle {
+  font-family: Instrument Serif;
+  justify-self: left;
+  font-size: 7vh;
+  line-height: 1;
+  animation: swapText 0.2s ease-in-out forwards; 
+}
+@keyframes swapText {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.chapterTitle {
+  color: oklch(0.7 0 0);
+  font-size: 4.5vh;
 }
 /* .mainCanvas { */
 /*   height: 80vh; */
 /* } */
-.PDF {
-  display: flex;
+.PDF, .Film {
+  position: absolute;
+  display: grid;
   height: 85vh;
+  max-width: 80vw;
   aspect-ratio: 1.414/1;
   background: #0e0e0e;
   border: gainsboro solid 1px;
   transition-duration: 0.5s;
   opacity: 0%;
 }
+.PDFPage {
+  max-width:100%;
+}
 .closeButton {
   display: flex;
+  position: absolute;
   background: white;
+  background-image: url('./Close.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 2vw;
   aspect-ratio: 1/1;
-
+  z-index: 100;
+  transform: translateX(calc(-100% - 0.5vw)) translateY(-1px);
+}
+.info {
+  display: flex;
+  position: absolute;
+  background: oklch(0.1638 0 0);
+  background-image: url('./Info.svg');
+  background-repeat: no-repeat;
+  background-size: 2vw;
+  background-position: center;
+  height: 3vw;
+  aspect-ratio: 1/1;
+  transform: translateY(calc(10vh)) translateX(-0.5vw);
+}
+.info:hover {
+  background-color: oklch(0.2638 0 0);
 }
 
 canvas {
   z-index: -5;
 }
+@media only screen and (max-width : 768px) {
+  .PDF {
+    aspect-ratio: 1/1.414;
+    max-width: 80vw;
+  }
+  .sidePanel {
+    position: relative;
+    height: 10svh;
+  }
+  .UI {
+    height: 100svh
+  }
+  .closeButton {
+    height: 8vw;
+    aspect-ratio: 1/1;
+    transform: translateX(calc(-100% - 2vw)) translateY(-1px);
+  }
+  .PDF, .Film {
+    height: 55svh;
+    max-width: 70vw;
+  }
+  .chapterBox{
+    flex-wrap: wrap;
+    gap: 1vw;
+    padding: 1vw;
+  }
+  .chapter{
+    min-width: 20%;
+    margin: 0;
+  }
+
+};

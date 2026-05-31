@@ -14,5 +14,16 @@ export const usePDF = create((set) => ({
   closePDF: () => set({isPDFOpen: false}),
 }))
 
+export const useFilm = create((set) => ({
+  isFilmOpen: false,
+  openFilm: () => set({isFilmOpen: true}),
+  closeFilm: () => set({isFilmOpen: false}),
+}))
+
+export const useChapter = create((set) => ({
+  selectedChapter: 1,
+  selectChapter: (num) => set({selectedChapter: num}),
+}))
+
 
 
