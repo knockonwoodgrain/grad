@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 export const useMusic = create((set) => ({
   isPlaying: false,
-  songTitle: "PortraitOfATime.ogg",
+  songTitle: "Cocvers and Songs/PortraitOfATime.ogg",
   playMusic: () => set({isPlaying: true}),
   pauseMusic: () => set({isPlaying: false}),
   setSong: (title) => set({songTitle: title})
@@ -23,6 +23,12 @@ export const useFilm = create((set) => ({
 export const useChapter = create((set) => ({
   selectedChapter: 1,
   selectChapter: (num) => set({selectedChapter: num}),
+}))
+
+export const useThreeDLoad = create((set) => ({
+  isThreeDLoaded: false,
+  setThreeDLoadedTrue: () => set({isThreeDLoaded: true}),
+  setThreeDLoadedFalse: () => set({isThreeDLoaded: false}),
 }))
 
 

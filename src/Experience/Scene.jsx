@@ -2,11 +2,8 @@ import { Suspense } from "react";
 import { useFrame } from "@react-three/fiber";
 import Model from "./Models/MyRoom2.jsx";
 import { dampE } from "maath/easing";
-import { Text } from "@react-three/drei"; 
-import * as THREE from 'three';
 
 export default function Scene({camera}) {
-  const textColor = new THREE.Color(0xe2cfbc)
 
   useFrame(({pointer})=>{
     // console.log(camera.current.position)
@@ -26,10 +23,6 @@ export default function Scene({camera}) {
   return(
     <Suspense >
       <Model/>
-      <Text depthOffset={1} color={textColor} clipRect={[0,-1,1,1]} anchorX="left" anchorY="middle" maxWidth={5} whiteSpace='normal' position={[0.850, 0.939, 0.066]} 
-      rotation={[-0.3, -0.6, -0.18]} fontSize={0.0065} >
-         Portrait of A Time 
-      </Text>
     </Suspense >
   );
 };

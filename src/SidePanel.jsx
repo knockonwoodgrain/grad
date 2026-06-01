@@ -1,33 +1,31 @@
 import { useEffect } from 'react';
-import { useChapter } from './UIStore'
+import { useChapter, useThreeDLoad } from './UIStore'
+import narratives from './narratives.json'
 
 function SidePanel() {
+  const {isThreeDLoaded} = useThreeDLoad();
   const {selectedChapter, selectChapter} = useChapter();
-  const chapters = [1,2,3,4,5,6,7,8];
-  const chapterNames = [
-    "Before Mumbai", 
-    "My First Commercial", 
-    "A Dream Come True",
-    "The Space Between Us",
-    "Break Over",
-    "Meeting your hero",
-    "My Last Commercial",
-    "Fin." 
-  ] 
+  // const setLoading = () => {
+  //   if (isThreeDLoaded) {
+  //     setThreeDLoadedFalse()
+  //   } else {
+  //     setThreeDLoadedTrue()
+  //   }
+  // }
   useEffect(()=>{
     console.log(selectedChapter)
   },[selectedChapter])
 return (
     <>
-    <div className='sidePanel'>
-    <div className='info'></div>
-      <div className="sidePanelContent">
-        <h1 className='websiteTitle'>Collection of Time</h1>
-        <h2 className='chapterTitle' key={selectedChapter}>{chapterNames[selectedChapter-1]}</h2>
+    <div className={isThreeDLoaded ? 'sidePanel' : 'sidePanelLoad sidePanel'} >
+    <div className={isThreeDLoaded ? 'info' : 'infoLoad info'}></div>
+      <div className={isThreeDLoaded ? 'sidePanelContent' : 'sidePanelContentLoad sidePanelContent'}>
+        <h1 className={isThreeDLoaded ? 'websiteTitle' : 'websiteTitleLoad websiteTitle'}>Collection of Time</h1>
+        <h2 className={isThreeDLoaded ? 'chapterTitle' : 'chapterTitleLoad chapterTitle'} key={selectedChapter}>{narratives[selectedChapter-1].title}</h2> 
       </div>
-      <div className='chapterBox'>
-        {chapters.map((chapter, index) => (
-            <div key={index} className={(index+1)==selectedChapter? "chapterSelected" : "chapter"} onClick={() => selectChapter(index+1)}>0{chapter}</div>
+      <div className={isThreeDLoaded ? 'chapterBox' : 'chapterBoxLoad chapterBox'}>
+        {narratives.map((narrative, index) => (
+            <div key={index} className={(index+1)==selectedChapter? isThreeDLoaded ? 'chapterSelected' : 'chapterSelected chapterLoad' : isThreeDLoaded ? "chapter" : "chapterLoad chapter" } onClick={() => selectChapter(index+1)}>{narrative.id}</div>
         ))}
         </div>
     </div>

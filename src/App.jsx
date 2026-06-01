@@ -1,4 +1,3 @@
-import './App.css'
 import Experience from './Experience/Experience' 
 import Music from "./Music";
 import Journal from './Journal'

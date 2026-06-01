@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useMusic } from './UIStore'
 
 export default function Music() {
-  const song = "PortraitOfATime.ogg"
+  const song = "Covers and Tracks/PortraitOfATime.ogg"
   const audioPlayer = useRef();
   const {isPlaying } = useMusic();
 
