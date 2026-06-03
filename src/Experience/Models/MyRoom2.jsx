@@ -4,13 +4,13 @@ Command: npx gltfjsx@6.5.3 MyRoom2.glb -k
 */
 
 import {  useGLTF, useTexture, Text } from '@react-three/drei'
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import * as THREE from "three";
 import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from 'postprocessing'
 import { OverrideMaterialManager } from 'postprocessing'
 // import Music from '../../Music';
-import { useMusic, usePDF, useFilm, useThreeDLoad, useChapter } from '../../UIStore'
+import { useMusic, usePDF, useFilm, useThreeDLoad, useChapter, useEnterWebsite } from '../../UIStore'
 import { useMediaQuery } from "@uidotdev/usehooks";
 import narratives from '../../narratives.json'
 import { useFrame } from '@react-three/fiber';
@@ -35,6 +35,7 @@ function convertMaterialsToBasic(materials, alphaTestValue = 0) {
   return newMaterials;
 }
 
+
 export default function Model(props) {
   const {setThreeDLoadedTrue } = useThreeDLoad();
   useEffect(()=>{
@@ -58,6 +59,7 @@ export default function Model(props) {
   const volumedial = useRef();
   const { nodes, materials } = useGLTF('/MyRoom3.glb')
   const newMaterials = convertMaterialsToBasic(materials)
+  const {enterWebsite, setEnterWebsite} = useEnterWebsite();
   const [video] = useState(() => {
     const vid = document.createElement('video');
     vid.crossOrigin = 'Anonymous';
@@ -67,35 +69,66 @@ export default function Model(props) {
   });
   const videoSrc = 'Thumbnails/websiteThumbnail_01.mp4';
 
+  const [song, setSong] = useState(narratives[selectedChapter-1].songs.track)
+
+
+  useEffect(() => {
+    if (narratives[selectedChapter-1].songs.track.length > 17) {
+      setSong(narratives[selectedChapter-1].songs.track.slice(0, 17) + '..');
+    } else {
+      setSong(narratives[selectedChapter-1].songs.track)
+    }
+  }, [selectedChapter])
+
+  async function safePlay(video) {
+    try {
+      // if (isThreeDLoaded) {
+        await video.play();
+      // }
+    } catch (error) {
+      console.error("Playback failed or was prevented:", error);
+    }
+  }
+  async function safePause(video) {
+    try {
+      await video.pause();
+    } catch (error) {
+      console.error("Playback failed or was prevented:", error);
+    }
+  }
+  async function loadVideo(video) {
+    try {
+      await video.load();
+    } catch(error) {
+      console.log(error)
+    }
+  }
+  // const [videoTexture, setVideoTexture] = useState(new THREE.VideoTexture(video));
+  const videoTexture = (new THREE.VideoTexture(video)) 
+
   // 2. Manage the video source and pausing logic
   useEffect(() => {
-    // Pause and reset the previous video before switching sources
-    video.pause();
-    video.currentTime = 0;
+      safePause(video)
+      video.currentTime = 0;
 
-    video.src = `Thumbnails/${narratives[selectedChapter-1].thumbnail}`;
-    console.log(video.src)
-    video.load(); 
-    
-    // Auto-play the new source
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log("Autoplay prevented:", error);
-      });
-    }
-
+      video.src = `Thumbnails/${narratives[selectedChapter-1].thumbnail}`;
+      loadVideo(video)
+      
+      safePlay(video)
     return () => {
-      video.pause();
+      safePause(video)
     };
   }, [videoSrc, video, selectedChapter]);
 
-  const [videoTexture] = useState(() => new THREE.VideoTexture(video));
+
+
   useFrame(() => {
-    if (videoTexture) videoTexture.needsUpdate = true;
+    if (videoTexture) {
+      videoTexture.needsUpdate = true;
+      videoTexture.flipY = false;
+    } 
   });
-  const coverImage = useTexture(`Covers and Tracks/${narratives[selectedChapter-1].songs.cover}`);
-  videoTexture.flipY = false;
+  const coverImage = useTexture(`Converted Covers/${narratives[selectedChapter-1].songs.cover}`);
   coverImage.flipY = false;
 
   const outlinedRefs = [actualjournal, monitorscreen]
@@ -111,11 +144,6 @@ export default function Model(props) {
     }
   };
   const onHover = (n, ref) =>{
-    if (ref==buttonpauseone) {
-      console.log("buttonpauseone")
-    } else if (ref==volumedial) {
-      console.log("volumedial")
-    }
     if (n==1) {
       setHoveredItem(ref);
     } else if (n==0) {
@@ -184,7 +212,7 @@ export default function Model(props) {
         toneMapped = {false}
         position={[1.296, 1.17, 0.45]} 
         rotation={[0, 0, -1.79]} >
-        <meshBasicMaterial map={videoTexture} />
+        <meshBasicMaterial map={videoTexture}  />
     </mesh>
       <mesh name="Cover" ref={cover} 
         onPointerEnter={() => onHover(1, cover)} 
@@ -219,7 +247,7 @@ export default function Model(props) {
       <Text depthOffset={1} color={textColor} clipRect={[0,-1,1,1]} anchorX="left" anchorY="middle" maxWidth={5} whiteSpace='normal' 
         position={[0.850, 0.939, 0.066]} 
         rotation={[-0.3, -0.6, -0.18]} fontSize={0.0065} >
-        {narratives[selectedChapter-1].songs.track}
+        {song}
       </Text>
     </group>
     {/* <Music playpause={songPlaying}/> */}

@@ -6,9 +6,9 @@
     "title" : "Before Mumbai",
     "songs" : {
       "track" : "I Know",
-      "cover" : "Cover01.jpg",
+      "cover" : "When The Pawn.webp",
       "author" : "Fiona Apple",
-      "file" : "Fiona Apple"
+      "file" : "I Know.opus"
       },
     "journal" : "BeforeMumbai.pdf"
   },
@@ -18,10 +18,10 @@
     "film" : "websiteThumbnail_02.mp4",
     "title" : "My First Commercial",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover02.jpg",
+      "track" : "PUNK ROCKY",
+      "cover" : "Don't Be Dumb.webp",
       "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "file" : "PUNK ROCKY.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -31,10 +31,10 @@
     "film" : "websiteThumbnail_03.mp4",
     "title" : "A Dream Come True",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover03.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "Seasons",
+      "cover" : "Tapes of the Peter Cat Recording Co.webp",
+      "author" : "Peter Cat Recording Co.",
+      "file" : "Seasons.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -44,10 +44,10 @@
     "film" : "websiteThumbnail_04.mp4",
     "title" : "The Space Between Us",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover04.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "Abracadabra",
+      "cover" : "Abracadabra.webp",
+      "author" : "Run it's the Kid",
+      "file" : "Abracadabra.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -57,10 +57,10 @@
     "film" : "websiteThumbnail_05.mp4",
     "title" : "Break Over",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover05.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "Equorix",
+      "cover" : "Equorix.webp",
+      "author" : "INEKT",
+      "file" : "Equorix.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -70,10 +70,10 @@
     "film" : "websiteThumbnail_06.mp4",
     "title" : "Meeting Your Hero",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover06.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "Din Raat",
+      "cover" : "Jaago.webp",
+      "author" : "Lifafa",
+      "file" : "Din Raat.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -83,10 +83,10 @@
     "film" : "websiteThumbnail_07.mp4",
     "title" : "My Last Commercial",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover07.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "Ode to the Mets",
+      "cover" : "The New Abnormal.webp",
+      "author" : "The Strokes",
+      "file" : "Ode To The Mets.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   },
@@ -96,10 +96,10 @@
     "film" : "websiteThumbnail_08.mp4",
     "title" : "Fin.",
     "songs" : {
-      "track" : "Punk Rocky",
-      "cover" : "Cover08.jpg",
-      "author" : "A$AP Rocky",
-      "file" : "Fiona Apple"
+      "track" : "The Weirdest Year of Your Life",
+      "cover" : "One.webp",
+      "author" : "C418",
+      "file" : "C418.opus"
       },
     "journal" : "MyFirstCommercial.pdf"
   }

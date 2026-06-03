@@ -25,8 +25,8 @@ function App() {
     <FilmMonitor />
     </div>
     <SidePanel />
-    <Experience />
     <Music />
+    <Experience />
     </>
   )
 }

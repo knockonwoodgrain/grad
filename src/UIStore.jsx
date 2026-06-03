@@ -2,10 +2,8 @@ import { create } from 'zustand'
 
 export const useMusic = create((set) => ({
   isPlaying: false,
-  songTitle: "Cocvers and Songs/PortraitOfATime.ogg",
   playMusic: () => set({isPlaying: true}),
   pauseMusic: () => set({isPlaying: false}),
-  setSong: (title) => set({songTitle: title})
 }))
 
 export const usePDF = create((set) => ({
@@ -29,6 +27,11 @@ export const useThreeDLoad = create((set) => ({
   isThreeDLoaded: false,
   setThreeDLoadedTrue: () => set({isThreeDLoaded: true}),
   setThreeDLoadedFalse: () => set({isThreeDLoaded: false}),
+}))
+
+export const useEnterWebsite = create((set) => ({
+  enterWebsite: false,
+  setEnterWebsite: (bol) => set({enterWebsite: bol}),
 }))
 
 
