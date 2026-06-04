@@ -4,13 +4,12 @@ Command: npx gltfjsx@6.5.3 MyRoom2.glb -k
 */
 
 import {  useGLTF, useTexture, Text } from '@react-three/drei'
-import { useRef, useState, useEffect, useMemo } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as THREE from "three";
 import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from 'postprocessing'
 import { OverrideMaterialManager } from 'postprocessing'
-// import Music from '../../Music';
-import { useMusic, usePDF, useFilm, useThreeDLoad, useChapter, useEnterWebsite } from '../../UIStore'
+import { useMusic, usePDF, useFilm, useThreeDLoad, useChapter } from '../../UIStore'
 import { useMediaQuery } from "@uidotdev/usehooks";
 import narratives from '../../narratives.json'
 import { useFrame } from '@react-three/fiber';
@@ -59,7 +58,6 @@ export default function Model(props) {
   const volumedial = useRef();
   const { nodes, materials } = useGLTF('/MyRoom3.glb')
   const newMaterials = convertMaterialsToBasic(materials)
-  const {enterWebsite, setEnterWebsite} = useEnterWebsite();
   const [video] = useState(() => {
     const vid = document.createElement('video');
     vid.crossOrigin = 'Anonymous';

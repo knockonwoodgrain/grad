@@ -1,5 +1,5 @@
 import { Canvas} from "@react-three/fiber";
-import { PerspectiveCamera, CameraControls} from "@react-three/drei";
+import { PerspectiveCamera} from "@react-three/drei";
 import Scene from "./Scene.jsx";
 import { useRef, useEffect, useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";

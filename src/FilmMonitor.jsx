@@ -5,7 +5,7 @@ export default function FilmMonitor() {
   const {closeFilm, isFilmOpen} = useFilm(); 
   const {isPDFOpen} = usePDF();
   const [style, setStyle] = useState({opacity: "0%", visible: "hidden"});
-  const pdfUI = useRef(HTMLDocument);
+  const filmUI = useRef(HTMLDocument);
   useEffect(() => {
     if (isFilmOpen) {
       setStyle({opacity: "100%", display: "grid", visible: "visible"})
@@ -19,9 +19,11 @@ export default function FilmMonitor() {
   
   return (
     <>
-    <div ref={pdfUI} style={style} className="Film">
+    <div className="FilmUI" ref={filmUI} style={style}>
       <div onClick={()=>closeFilm()} className="closeButton" />
-      <h1 style={{color: "white"}}>Film</h1>
+      <div  className="Film">
+        <h1 style={{color: "white"}}>Film</h1>
+      </div>
     </div>
     </>
   )

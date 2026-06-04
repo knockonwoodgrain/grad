@@ -6,7 +6,7 @@ export default function Music() {
 
   const {isThreeDLoaded} = useThreeDLoad();
   const {selectedChapter} = useChapter();
-  const {enterWebsite, setEnterWebsite} = useEnterWebsite();
+  const {enterWebsite} = useEnterWebsite();
   const [song, setSong] = useState(`Tracks/${narratives[selectedChapter-1].songs.file}`);
   const audioPlayer = useRef();
   const {isPlaying, playMusic, pauseMusic } = useMusic();
@@ -91,8 +91,8 @@ export default function Music() {
         <div className="songAuthor" key={narratives[selectedChapter-1].songs.author}>{narratives[selectedChapter-1].songs.author}</div>
         <div className="audioControls" onClick={() => handlePlayPause()} >
           {!isPlaying ? 
-          <svg className="audioSvg" key={`Play ${narratives[selectedChapter-1].songs.file}`} xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e3e3e3"><path d="M320-263v-438q0-15 10-24.17 10-9.16 23.33-9.16 4.34 0 8.84 1.16 4.5 1.17 8.83 3.5L715.67-510q7.66 5.33 11.5 12.33 3.83 7 3.83 15.67t-3.83 15.67q-3.84 7-11.5 12.33L371-234.33q-4.33 2.33-8.83 3.5-4.5 1.16-8.84 1.16-13.33 0-23.33-9.16Q320-248 320-263Z"/></svg> :
-          <svg className="audioSvg" key={`Pause ${narratives[selectedChapter-1].songs.file}`}xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e3e3e3"><path d="M623.33-200q-27.5 0-47.08-19.58-19.58-19.59-19.58-47.09v-426.66q0-27.5 19.58-47.09Q595.83-760 623.33-760H660q27.5 0 47.08 19.58 19.59 19.59 19.59 47.09v426.66q0 27.5-19.59 47.09Q687.5-200 660-200h-36.67ZM300-200q-27.5 0-47.08-19.58-19.59-19.59-19.59-47.09v-426.66q0-27.5 19.59-47.09Q272.5-760 300-760h36.67q27.5 0 47.08 19.58 19.58 19.59 19.58 47.09v426.66q0 27.5-19.58 47.09Q364.17-200 336.67-200H300Z"/></svg> }
+          <svg className="audioSvg" key={`Play ${narratives[selectedChapter-1].songs.file}`} xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" ><path d="M320-202v-560l440 280-440 280Z"/></svg> :
+          <svg className="audioSvg" key={`Pause ${narratives[selectedChapter-1].songs.file}`}xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" ><path d="M556.67-200v-560h170v560h-170Zm-323.34 0v-560h170v560h-170Z"/></svg> }
         </div>
       </div>
     </>

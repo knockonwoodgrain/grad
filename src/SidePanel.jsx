@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useChapter, useThreeDLoad, useEnterWebsite } from './UIStore'
 import narratives from './narratives.json'
 
 function SidePanel() {
-  const {isThreeDLoaded, setThreeDLoadedFalse, setThreeDLoadedTrue} = useThreeDLoad();
+  const {isThreeDLoaded} = useThreeDLoad();
   const {selectedChapter, selectChapter} = useChapter();
   const {enterWebsite, setEnterWebsite} = useEnterWebsite();
-  const setLoading = () => {
-    if (isThreeDLoaded) {
-      setEnterWebsite(false)
-      setThreeDLoadedFalse()
-    } else {
-      setEnterWebsite(true)
-      setThreeDLoadedTrue()
-    }
-  }
+  // const setLoading = () => {
+  //   if (isThreeDLoaded) {
+  //     setEnterWebsite(false)
+  //     setThreeDLoadedFalse()
+  //   } else {
+  //     setEnterWebsite(true)
+  //     setThreeDLoadedTrue()
+  //   }
+  // }
 return (
     <>
     <div className={enterWebsite ? 'sidePanel' : 'sidePanelLoad sidePanel'}  >

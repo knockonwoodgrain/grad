@@ -364,7 +364,7 @@ body {
 
 .audioSvg {
   animation: swapControls 0.1s ease-in-out forwards;
-
+  fill: white;
 }
 
 @keyframes swapControls {
@@ -380,8 +380,15 @@ body {
 /* .mainCanvas { */
 /*   height: 80vh; */
 /* } */
-.PDF, .Film {
+.JournalUI, .FilmUI {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+  gap: 0.6vw;
   position: absolute;
+  transition-duration: 0.5s;
+}
+.PDF, .Film {
   display: grid;
   height: 85vh;
   max-width: 80vw;
@@ -389,14 +396,25 @@ body {
   background: #0e0e0e;
   border: gainsboro solid 1px;
   transition-duration: 0.5s;
-  opacity: 0%;
 }
-.PDFPage {
-  max-width:100%;
-}
-.closeButton {
+.PDFFile {
   display: flex;
-  position: absolute;
+  flex-direction: column;
+  overflow-y:scroll;
+  scroll-behavior: smooth;
+  scroll-snap-stop: always;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+.PDFFile>.JournalPage {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.JournalPage {
+  display: flex;
+}
+.closeButton, .previousButton, .nextButton {
+  display: flex;
   background: white;
   background-image: url('assets/Close.svg');
   background-repeat: no-repeat;
@@ -404,7 +422,26 @@ body {
   height: 2vw;
   aspect-ratio: 1/1;
   z-index: 100;
-  transform: translateX(calc(-100% - 0.5vw)) translateY(-1px);
+}
+.previousButton, .nextButton {
+  background: white;
+  align-self: center;
+}
+buttonSVG {
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1/1;
+}
+.previousButton {
+  position: absolute;
+}
+
+
+.buttonGrid {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+
 }
 
 canvas {
